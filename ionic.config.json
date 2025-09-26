@@ -1,0 +1,7 @@
+{
+  "name": "gest-pro",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
