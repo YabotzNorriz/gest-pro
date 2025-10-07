@@ -1,15 +1,33 @@
+<app-header></app-header>
+
 <ion-content [fullscreen]="true">
-  <app-header></app-header>
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>
-      Start with Ionic
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components"
-        >UI Components</a
-      >
-    </p>
+  <div class="ion-padding">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>DNP</ion-card-subtitle>
+        <ion-card-title>COMID</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <h3 class="task-title">
+          Mapeamento dos processos de trabalho da COMID
+        </h3>
+        <p class="task-reference">1231412315413141441231231</p>
+        <p class="task-assignee">Isabella</p>
+
+        <div class="tags-container">
+          <ion-chip>DNP</ion-chip>
+          <ion-chip color="success" fill="outline">Seguro</ion-chip>
+        </div>
+
+        <div class="card-actions">
+          <div class="action-buttons">
+            <ion-button fill="clear" size="small">DELETAR</ion-button>
+            <ion-button fill="clear" size="small">EDITAR</ion-button>
+          </div>
+          <ion-icon name="send" color="medium"></ion-icon>
+        </div>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

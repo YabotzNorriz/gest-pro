@@ -4,6 +4,17 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
+  IonButtons,
+  IonSegment,
+  IonSegmentButton,
+  IonCard,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonCardContent,
+  IonChip,
+  IonButton,
+  IonIcon,
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../header/header.component';
 
@@ -11,7 +22,19 @@ import { HeaderComponent } from '../header/header.component';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonContent, HeaderComponent],
+  imports: [
+    IonIcon,
+    IonButton,
+    IonChip,
+    IonCardContent,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonCardHeader,
+    IonCard,
+    IonContent,
+    HeaderComponent,
+    IonCard
+],
 })
 export class HomePage {
   constructor() {}
