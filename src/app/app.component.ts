@@ -1,10 +1,24 @@
 import { Component } from '@angular/core';
-import { IonApp, IonRouterOutlet, IonList, IonItem, IonContent, IonHeader, IonToolbar, IonTitle, IonMenu } from '@ionic/angular/standalone';
+import {
+  IonApp,
+  IonRouterOutlet,
+  IonList,
+  IonItem,
+  IonContent,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonMenu,
+  IonIcon,
+} from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { arrowBack, home, power, settings } from 'ionicons/icons';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   imports: [
+    IonIcon,
     IonTitle,
     IonToolbar,
     IonHeader,
@@ -13,9 +27,11 @@ import { IonApp, IonRouterOutlet, IonList, IonItem, IonContent, IonHeader, IonTo
     IonList,
     IonApp,
     IonRouterOutlet,
-    IonMenu
-],
+    IonMenu,
+  ],
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+    addIcons({ arrowBack, home, settings, power });
+  }
 }

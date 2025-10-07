@@ -15,6 +15,7 @@ import {
   IonChip,
   IonButton,
   IonIcon,
+  IonLabel,
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../header/header.component';
 

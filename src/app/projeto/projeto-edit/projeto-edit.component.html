@@ -1,3 +1,63 @@
-<p>
-  projeto-edit works!
-</p>
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    <h2 class="form-title">Formulário</h2>
+
+    <ion-list lines="full">
+      <ion-item>
+        <ion-label>Num projeto</ion-label>
+        <ion-input class="ion-text-right" placeholder="exemplo"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Data início</ion-label>
+        <ion-input
+          class="ion-text-right"
+          type="date"
+          placeholder="exemplo"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Nome Projeto</ion-label>
+        <ion-input class="ion-text-right" placeholder="exemplo"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Áreas</ion-label>
+        <ion-input class="ion-text-right" placeholder="exemplo"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Responsável</ion-label>
+        <ion-input class="ion-text-right" placeholder="exemplo"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Escopo</ion-label>
+        <ion-textarea
+          class="ion-text-right"
+          placeholder="exemplo"
+          [autoGrow]="true"
+        ></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Status</ion-label>
+        <ion-select class="ion-text-right" placeholder="exemplo">
+          <ion-select-option value="iniciar">A Iniciar</ion-select-option>
+          <ion-select-option value="andamento">Em Andamento</ion-select-option>
+          <ion-select-option value="concluido">Concluído</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <div class="button-container">
+      <ion-button class="form-button" color="primary">SALVAR</ion-button>
+      <ion-button class="form-button ion-margin-top" color="danger"
+        >EXCLUIR</ion-button
+      >
+    </div>
+  </div>
+</ion-content>

@@ -20,4 +20,11 @@ export const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full',
   },
+  {
+    path: 'projeto-edit',
+    loadComponent: () =>
+      import('./projeto/projeto-edit/projeto-edit.component').then(
+        (m) => m.ProjetoEditComponent
+      ),
+  },
 ];
