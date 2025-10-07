@@ -1,3 +1,48 @@
-<p>
-  login works!
-</p>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light" class="ion-padding">
+  <div class="center-container">
+    <form id="loginForm" (ngSubmit)="onLogin()" [formGroup]="loginForm">
+      <ion-list>
+        <ion-item>
+          <ion-icon name="mail" slot="start"></ion-icon>
+          <ion-input
+            label="Email"
+            placeholder="Digite seu email"
+            formControlName="email"
+            type="email"
+            id="email"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="key" slot="start"></ion-icon>
+          <ion-input
+            label="Senha"
+            placeholder="Digite sua senha"
+            type="password"
+            formControlName="password"
+            id="password"
+          ></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-button
+        type="submit"
+        [disabled]="!loginForm.valid"
+        expand="block"
+        class="ion-margin-top"
+      >
+        Entrar
+      </ion-button>
+
+      <ion-button fill="clear" expand="block" size="small">
+        Esqueceu a senha?
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

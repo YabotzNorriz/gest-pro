@@ -1,50 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Gest-pro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content color="light" class="ion-padding">
-  <form
-    id="cadastroForm"
-    (ngSubmit)="onSubmit()"
-    [formGroup]="cadastroForm"
-  >
-    <ion-list>
-      <ion-item>
-        <ion-icon name="happy"></ion-icon>
-        <ion-input
-          label="Nome"
-          placeholder="Enter text"
-          formControlName="name"
-          id="name"
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="people"></ion-icon>
-        <ion-input
-          label="Username"
-          placeholder="Enter text"
-          formControlName="username"
-          id="username"
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="mail"></ion-icon>
-        <ion-input
-          label="Email"
-          placeholder="Digite o Email"
-          formControlName="email"
-          id="email"
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="key"></ion-icon>
-        <ion-input
-          label="Senha"
-          placeholder="Digite a senha"
-          type="password"
-          formControlName="password"
-          id="password"
-        ></ion-input>
-      </ion-item>
-    </ion-list>
-    <ion-button type="submit" [disabled]="!cadastroForm.valid"
-      >Cadastrar</ion-button
-    >
-  </form>
+  <div class="center-container">
+    <form id="cadastroForm" (ngSubmit)="onSubmit()" [formGroup]="cadastroForm">
+      <ion-list>
+        <ion-item>
+          <ion-icon name="happy" slot="start"></ion-icon>
+          <ion-input
+            label="Nome"
+            placeholder="Digite seu nome"
+            formControlName="name"
+            id="name"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="people" slot="start"></ion-icon>
+          <ion-input
+            label="Username"
+            placeholder="Digite seu usuário"
+            formControlName="username"
+            id="username"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="mail" slot="start"></ion-icon>
+          <ion-input
+            label="Email"
+            placeholder="Digite seu email"
+            formControlName="email"
+            id="email"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="key" slot="start"></ion-icon>
+          <ion-input
+            label="Senha"
+            placeholder="Digite sua senha"
+            type="password"
+            formControlName="password"
+            id="password"
+          ></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-button
+        type="submit"
+        [disabled]="!cadastroForm.valid"
+        expand="block"
+        class="ion-margin-top"
+      >
+        Cadastrar
+      </ion-button>
+    </form>
+  </div>
 </ion-content>

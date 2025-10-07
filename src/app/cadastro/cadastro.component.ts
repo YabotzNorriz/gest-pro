@@ -14,7 +14,10 @@ import {
   IonContent,
   IonIcon,
   IonItemSliding,
+  IonTitle,
   IonButton,
+  IonToolbar,
+  IonHeader,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { mail, key, people, happy } from 'ionicons/icons';
@@ -25,6 +28,8 @@ import { UserService } from '../services/user.service';
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   imports: [
+    IonHeader,
+    IonToolbar,
     IonButton,
     IonIcon,
     IonContent,
@@ -32,6 +37,7 @@ import { UserService } from '../services/user.service';
     IonList,
     IonInput,
     IonIcon,
+    IonTitle,
     ReactiveFormsModule,
   ],
   styleUrls: ['./cadastro.component.scss'],
