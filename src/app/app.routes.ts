@@ -21,10 +21,17 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'projeto-edit',
+    path: 'edit',
     loadComponent: () =>
       import('./projeto/projeto-edit/projeto-edit.component').then(
         (m) => m.ProjetoEditComponent
+      ),
+  },
+  {
+    path: 'add',
+    loadComponent: () =>
+      import('./projeto/projeto-add/projeto-add.component').then(
+        (m) => m.ProjetoAddComponent
       ),
   },
 ];

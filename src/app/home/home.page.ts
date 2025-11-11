@@ -16,14 +16,21 @@ import {
   IonButton,
   IonIcon,
   IonLabel,
+  IonFab,
+  IonFabButton,
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../header/header.component';
+import { Router } from '@angular/router';
+import { addIcons } from 'ionicons';
+import { add } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   imports: [
+    IonFabButton,
+    IonFab,
     IonIcon,
     IonButton,
     IonChip,
@@ -34,9 +41,11 @@ import { HeaderComponent } from '../header/header.component';
     IonCard,
     IonContent,
     HeaderComponent,
-    IonCard
-],
+    IonCard,
+  ],
 })
 export class HomePage {
-  constructor() {}
+  constructor(private router: Router) {
+    addIcons({ add });
+  }
 }
