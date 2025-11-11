@@ -1,35 +1,78 @@
 <app-header></app-header>
 
 <ion-content [fullscreen]="true">
-  <div class="ion-padding">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-subtitle>DNP</ion-card-subtitle>
-        <ion-card-title>COMID</ion-card-title>
-      </ion-card-header>
+  <ng-container *ngIf="projects$ | async as projects; else loading">
+    <div *ngIf="projects.length > 0; else noProjects">
+      <div class="ion-padding">
+        <ion-card *ngFor="let project of projects">
+          <ion-card-header>
+            <ion-card-subtitle>{{ project.areas }}</ion-card-subtitle>
+            <ion-card-title>{{ project.nomeProjeto }}</ion-card-title>
+          </ion-card-header>
 
-      <ion-card-content>
-        <h3 class="task-title">
-          Mapeamento dos processos de trabalho da COMID
-        </h3>
-        <p class="task-reference">1231412315413141441231231</p>
-        <p class="task-assignee">Isabella</p>
+          <ion-card-content>
+            <h3 class="task-title">{{ project.escopo }}</h3>
+            <p class="task-reference">#{{ project.numProjeto }}</p>
+            <p class="task-assignee">Responsável: {{ project.responsavel }}</p>
 
-        <div class="tags-container">
-          <ion-chip>DNP</ion-chip>
-          <ion-chip color="success" fill="outline">Seguro</ion-chip>
-        </div>
+            <div class="tags-container">
+              <ion-chip *ngFor="let tag of project.tags">{{ tag }}</ion-chip>
+              <ion-chip [color]="getStatusColor(project.status)">
+                {{ project.status }}
+              </ion-chip>
+            </div>
 
-        <div class="card-actions">
-          <div class="action-buttons">
-            <ion-button fill="clear" size="small">DELETAR</ion-button>
-            <ion-button fill="clear" size="small">EDITAR</ion-button>
-          </div>
-          <ion-icon name="send" color="medium"></ion-icon>
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </div>
+            <p
+              *ngIf="project.createdAt"
+              style="font-size: 0.8em; color: var(--ion-color-medium)"
+            >
+              Criado em: {{ project.createdAt.toDate()}}
+            </p>
+
+            <div class="card-actions">
+              <div class="action-buttons">
+                <ion-button
+                  fill="clear"
+                  size="small"
+                  color="danger"
+                  (click)="onDeleteProject(project)"
+                >
+                  DELETAR
+                </ion-button>
+                <ion-button
+                  fill="clear"
+                  size="small"
+                  (click)="onEditProject(project)"
+                >
+                  EDITAR
+                </ion-button>
+              </div>
+              <ion-icon name="send" color="medium"></ion-icon>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="ion-text-center ion-padding">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Carregando projetos...</p>
+    </div>
+  </ng-template>
+
+  <ng-template #noProjects>
+    <div class="ion-text-center ion-padding" style="margin-top: 50px">
+      <ion-icon
+        name="documents-outline"
+        style="font-size: 64px; color: var(--ion-color-medium)"
+      ></ion-icon>
+      <h3>Nenhum projeto encontrado</h3>
+      <p>Clique no botão '+' para adicionar seu primeiro projeto.</p>
+    </div>
+  </ng-template>
+
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button class="btn-add" (click)="onClickBtnAdd()">
       <ion-icon name="add"></ion-icon>

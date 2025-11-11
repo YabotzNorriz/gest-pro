@@ -1,6 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { addDoc, collection, Firestore, serverTimestamp } from '@angular/fire/firestore';
+import {
+  addDoc,
+  collection,
+  collectionData,
+  deleteDoc,
+  doc,
+  Firestore,
+  orderBy,
+  query,
+  serverTimestamp,
+  updateDoc,
+} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { Project } from 'src/models/project.model';
 
 @Injectable({
@@ -23,7 +35,7 @@ export class ProjectService {
       ...projectData,
       createdBy: user.uid,
       createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(), 
+      updatedAt: serverTimestamp(),
     };
 
     try {
@@ -36,4 +48,29 @@ export class ProjectService {
     }
   }
 
+  getProjects(): Observable<Project[]> {
+    const projectsCollection = collection(this.firestore, 'projects');
+    const project = query(projectsCollection, orderBy('createdAt', 'desc'));
+    return collectionData(project, { idField: 'id' }) as Observable<Project[]>;
+  }
+
+  async updateProject(projectId: string, projectData: Partial<Project>) {
+    const projectDocRef = doc(this.firestore, `projects/${projectId}`);
+    const dataToUpdate = {
+      ...projectData,
+      updatedAt: serverTimestamp(),
+    };
+
+    try {
+      await updateDoc(projectDocRef, dataToUpdate);
+      console.log('Projeto atualizado com ID: ', projectId);
+    } catch (e) {
+      console.error('Erro ao atualizar projeto: ', e);
+    }
+  }
+
+  deleteProject(projectId: string) {
+    const projectDocRef = doc(this.firestore, `projects/${projectId}`);
+    return deleteDoc(projectDocRef);
+  }
 }

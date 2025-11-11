@@ -11,4 +11,5 @@ export interface Project {
   createdBy: string;
   createdAt: any;
   updatedAt: any;
+  ativo: boolean;
 }
