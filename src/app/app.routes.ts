@@ -17,7 +17,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'cadastro',
     pathMatch: 'full',
   },
   {

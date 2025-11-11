@@ -1,89 +1,102 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { UserService } from 'src/app/services/user.service';
 import {
+  IonHeader,
   IonInput,
-  IonList,
+  IonTitle,
+  IonToolbar,
   IonItem,
   IonContent,
+  IonList,
   IonIcon,
-  IonItemSliding,
-  IonTitle,
   IonButton,
-  IonToolbar,
-  IonHeader,
 } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
-import { mail, key, people, happy } from 'ionicons/icons';
-import { User } from 'src/models/user.model';
-import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
+  styleUrls: ['./cadastro.component.scss'],
   imports: [
-    IonHeader,
-    IonToolbar,
     IonButton,
     IonIcon,
+    IonList,
     IonContent,
     IonItem,
-    IonList,
-    IonInput,
-    IonIcon,
+    IonToolbar,
     IonTitle,
+    IonInput,
+    IonHeader,
+    IonHeader,
     ReactiveFormsModule,
   ],
-  styleUrls: ['./cadastro.component.scss'],
 })
 export class CadastroComponent implements OnInit {
-  user!: User;
   cadastroForm!: FormGroup;
-  checkEmail!: boolean;
 
   constructor(
-    private router: Router,
+    private fb: FormBuilder,
     private userService: UserService,
-    private formBuilder: FormBuilder
-  ) {
-    addIcons({ mail, key, people, happy });
-  }
+    private router: Router,
+    private alertController: AlertController,
+    private loadingController: LoadingController
+  ) {}
 
   ngOnInit() {
-    this.cadastroForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      username: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+    this.cadastroForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   async onSubmit() {
-    if (this.cadastroForm.valid) {
-      const newUser = this.cadastroForm.value;
-      const email = this.cadastroForm.get('email')?.value;
-      this.userService.checkEmail(email).subscribe((exists) => {
-        this.checkEmail = exists;
-        console.log('Alterado o email: ' + this.checkEmail);
-
-        if (!this.checkEmail) {
-          console.log('Alterado em baixo ' + this.checkEmail);
-          this.userService.createUser(newUser).subscribe(() => {
-            alert('Cadastro realizado com sucesso!');
-            this.router.navigate(['login']);
-          });
-        } else {
-          alert('Email já cadastrado!');
-        }
-      });
-    } else {
-      console.log(this.cadastroForm);
+    if (!this.cadastroForm.valid) {
+      return;
     }
+
+    const loading = await this.loadingController.create({
+      message: 'Cadastrando...',
+    });
+    await loading.present();
+
+    try {
+      const { name, username, email, password } = this.cadastroForm.value;
+      const user = await this.userService.register({ email, password });
+
+      await loading.dismiss();
+
+      if (user) {
+        await this.presentAlert(
+          'Sucesso!',
+          'Cadastro realizado. Faça o login para continuar.'
+        );
+        this.router.navigateByUrl('/login');
+      } else {
+        await this.presentAlert(
+          'Falha',
+          'Não foi possível realizar o cadastro. Verifique se o e-mail já está em uso.'
+        );
+      }
+    } catch (e) {
+      await loading.dismiss();
+      await this.presentAlert('Erro', 'Ocorreu um erro inesperado.');
+      console.error(e);
+    }
+  }
+
+  async presentAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: ['OK'],
+    });
+    await alert.present();
   }
 }
