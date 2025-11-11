@@ -1,63 +1,122 @@
 <app-header></app-header>
 
 <ion-content [fullscreen]="true">
-  <div class="ion-padding">
-    <h2 class="form-title">Formulário</h2>
+  <div *ngIf="!isLoading; else loadingTemplate">
+    <form [formGroup]="projectForm" (ngSubmit)="onUpdate()">
+      <div class="ion-padding">
+        <h2 class="form-title">Editar Projeto</h2>
 
-    <ion-list lines="full">
-      <ion-item>
-        <ion-label>Num projeto</ion-label>
-        <ion-input class="ion-text-right" placeholder="exemplo"></ion-input>
-      </ion-item>
+        <ion-list lines="full">
+          <ion-item>
+            <ion-label>Num projeto</ion-label>
+            <ion-input
+              formControlName="numProjeto"
+              class="ion-text-right"
+              placeholder="exemplo"
+            ></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label>Data início</ion-label>
-        <ion-input
-          class="ion-text-right"
-          type="date"
-          placeholder="exemplo"
-        ></ion-input>
-      </ion-item>
+          <ion-item>
+            <ion-label>Data início</ion-label>
+            <ion-input
+              formControlName="dataInicio"
+              class="ion-text-right"
+              type="date"
+              placeholder="exemplo"
+            ></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label>Nome Projeto</ion-label>
-        <ion-input class="ion-text-right" placeholder="exemplo"></ion-input>
-      </ion-item>
+          <ion-item>
+            <ion-label>Nome Projeto</ion-label>
+            <ion-input
+              formControlName="nomeProjeto"
+              class="ion-text-right"
+              placeholder="exemplo"
+            ></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label>Áreas</ion-label>
-        <ion-input class="ion-text-right" placeholder="exemplo"></ion-input>
-      </ion-item>
+          <ion-item>
+            <ion-label>Áreas</ion-label>
+            <ion-input
+              formControlName="areas"
+              class="ion-text-right"
+              placeholder="exemplo"
+            ></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label>Responsável</ion-label>
-        <ion-input class="ion-text-right" placeholder="exemplo"></ion-input>
-      </ion-item>
+          <ion-item>
+            <ion-label>Responsável</ion-label>
+            <ion-input
+              formControlName="responsavel"
+              class="ion-text-right"
+              placeholder="exemplo"
+            ></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-label>Escopo</ion-label>
-        <ion-textarea
-          class="ion-text-right"
-          placeholder="exemplo"
-          [autoGrow]="true"
-        ></ion-textarea>
-      </ion-item>
+          <ion-item>
+            <ion-label>Escopo</ion-label>
+            <ion-textarea
+              formControlName="escopo"
+              class="ion-text-right"
+              placeholder="exemplo"
+              [autoGrow]="true"
+            ></ion-textarea>
+          </ion-item>
 
-      <ion-item>
-        <ion-label>Status</ion-label>
-        <ion-select class="ion-text-right" placeholder="exemplo">
-          <ion-select-option value="iniciar">A Iniciar</ion-select-option>
-          <ion-select-option value="andamento">Em Andamento</ion-select-option>
-          <ion-select-option value="concluido">Concluído</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
+          <ion-item>
+            <ion-label>Status</ion-label>
+            <ion-select
+              formControlName="status"
+              class="ion-text-right"
+              placeholder="exemplo"
+            >
+              <ion-select-option value="iniciar">A Iniciar</ion-select-option>
+              <ion-select-option value="andamento"
+                >Em Andamento</ion-select-option
+              >
+              <ion-select-option value="concluido">Concluído</ion-select-option>
+            </ion-select>
+          </ion-item>
 
-    <div class="button-container">
-      <ion-button class="form-button" color="primary">SALVAR</ion-button>
-      <ion-button class="form-button ion-margin-top" color="danger"
-        >EXCLUIR</ion-button
-      >
-    </div>
+          <ion-item>
+            <ion-label>Tags (separadas por vírgula)</ion-label>
+            <ion-input
+              formControlName="tags"
+              class="ion-text-right"
+              placeholder="ex: tag1, tag2"
+            ></ion-input>
+          </ion-item>
+        </ion-list>
+
+        <div class="button-container">
+          <ion-button
+            class="form-button"
+            color="primary"
+            type="submit"
+            [disabled]="projectForm.invalid"
+            >SALVAR</ion-button
+          >
+          <ion-button
+            class="form-button ion-margin-top"
+            color="danger"
+            (click)="onDeleteConfirm()"
+            >EXCLUIR</ion-button
+          >
+          <ion-button
+            class="form-button ion-margin-top"
+            color="light"
+            (click)="onClickBtnCancelar()"
+            >CANCELAR</ion-button
+          >
+        </div>
+      </div>
+    </form>
   </div>
+
+  <ng-template #loadingTemplate>
+    <div class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Carregando dados do projeto...</p>
+    </div>
+  </ng-template>
 </ion-content>

@@ -6,6 +6,7 @@ import {
   collectionData,
   deleteDoc,
   doc,
+  docData,
   Firestore,
   orderBy,
   query,
@@ -52,6 +53,11 @@ export class ProjectService {
     const projectsCollection = collection(this.firestore, 'projects');
     const project = query(projectsCollection, orderBy('createdAt', 'desc'));
     return collectionData(project, { idField: 'id' }) as Observable<Project[]>;
+  }
+
+  getProjectById(projectId: string): Observable<Project> {
+    const projectDocRef = doc(this.firestore, `projects/${projectId}`);
+    return docData(projectDocRef, { idField: 'id' }) as Observable<Project>;
   }
 
   async updateProject(projectId: string, projectData: Partial<Project>) {
