@@ -91,7 +91,7 @@ export class ProjetoAddComponent implements OnInit {
       await loading.dismiss();
 
       if (result) {
-        await this.presentAlert('Sucesso!', 'Projeto salvo com sucesso.');
+        await this.presentAlert('Sucesso', 'Projeto salvo com sucesso.');
         this.projectForm.reset();
         this.projectForm.patchValue({
           status: 'iniciar',
