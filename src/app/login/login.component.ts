@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit {
     });
     await alert.present();
   }
-  //TODO: Podemos implementar uma recuperação de senha no banco de dados
+  //TODO: Podemos implementar uma recuperação de senha no banco de dados (necessário colocar no HTML)
   // async onForgotPassword() {
   //   const alert = await this.alertController.create({
   //     header: 'Recuperar Senha',
