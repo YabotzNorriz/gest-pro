@@ -48,4 +48,9 @@ export class HomePage {
   constructor(private router: Router) {
     addIcons({ add });
   }
+
+  onClickBtnAdd() {
+    console.log('apertei no +');
+    this.router.navigate(['/add']);
+  }
 }
