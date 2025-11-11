@@ -19,6 +19,8 @@ import {
   IonIcon,
   IonButton,
 } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { key, mail } from 'ionicons/icons';
 
 @Component({
   selector: 'app-cadastro',
@@ -47,7 +49,9 @@ export class CadastroComponent implements OnInit {
     private router: Router,
     private alertController: AlertController,
     private loadingController: LoadingController
-  ) {}
+  ) {
+    addIcons({ mail, key });
+  }
 
   ngOnInit() {
     this.cadastroForm = this.fb.group({
