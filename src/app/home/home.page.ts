@@ -102,16 +102,16 @@ export class HomePage {
   }
 
   getStatusColor(
-    status: 'iniciar' | 'andamento' | 'concluido' | 'Em espera' | 'Cancelado'
+    status: 'Iniciar' | 'Em Andamento' | 'Concluído' | 'Em espera' | 'Cancelado'
   ) {
     switch (status) {
-      case 'iniciar':
+      case 'Iniciar':
         return 'medium';
-      case 'andamento':
+      case 'Em Andamento':
         return 'primary';
       case 'Em espera':
         return 'warning';
-      case 'concluido':
+      case 'Concluído':
         return 'success';
       case 'Cancelado':
         return 'danger';

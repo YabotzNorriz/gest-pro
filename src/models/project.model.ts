@@ -6,7 +6,7 @@ export interface Project {
   areas: string;
   responsavel: string;
   escopo: string;
-  status: 'iniciar' | 'andamento' | 'concluido' | 'Em espera' | 'Cancelado';
+  status: 'Iniciar' | 'Em Andamento' | 'Concluído' | 'Em espera' | 'Cancelado';
   tags: string[];
   createdBy: string;
   createdAt: any;
