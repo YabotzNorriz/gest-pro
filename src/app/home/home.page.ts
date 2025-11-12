@@ -70,6 +70,9 @@ export class HomePage {
 
   onEditProject(project: Project) {
     console.log('Editar:', project.id);
+    if (project.id) {
+      this.router.navigate(['/edit', project.id]);
+    }
   }
 
   async onDeleteProject(project: Project) {

@@ -21,7 +21,7 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'edit/:{id}',
+    path: 'edit/:id',
     loadComponent: () =>
       import('./projeto/projeto-edit/projeto-edit.component').then(
         (m) => m.ProjetoEditComponent
