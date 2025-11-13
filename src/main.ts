@@ -16,6 +16,9 @@ import { provideHttpClient } from '@angular/common/http';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { isDevMode } from '@angular/core';
+import { provideServiceWorker } from '@angular/service-worker';
+import { environment } from './environments/environment.prod';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -23,17 +26,12 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideHttpClient(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
-    provideFirebaseApp(() =>
-      initializeApp({
-        projectId: 'gest-pro-7d600',
-        appId: '1:843063877155:web:bd28ab6bf6b86eaebe9b96',
-        storageBucket: 'gest-pro-7d600.firebasestorage.app',
-        apiKey: 'AIzaSyAcqRvwuMLxQBS5OIGjLvtE7dXFeWaLJGM',
-        authDomain: 'gest-pro-7d600.firebaseapp.com',
-        messagingSenderId: '843063877155',
-      })
-    ),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
 });
