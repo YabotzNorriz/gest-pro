@@ -1,33 +1,30 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import {
-  IonContent,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonInput,
-  IonTextarea,
-  IonSelectOption,
-  IonButton,
-  IonSelect,
-  IonSpinner,
-} from '@ionic/angular/standalone';
-import { HeaderComponent } from 'src/app/header/header.component';
-import { ProjectService } from 'src/app/services/project.service';
-import {
-  AlertController,
-  LoadingController,
-  ToastController,
-  NavController,
-} from '@ionic/angular';
-import { take } from 'rxjs';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import {
+  AlertController,
+  IonButton,
+  IonContent,
+  IonInput,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonSelect,
+  IonSelectOption,
+  IonSpinner,
+  IonTextarea,
+  LoadingController,
+  NavController
+} from '@ionic/angular/standalone';
+import { take } from 'rxjs';
+import { HeaderComponent } from 'src/app/header/header.component';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-projeto-edit',
@@ -120,7 +117,7 @@ export class ProjetoEditComponent implements OnInit {
       });
   }
 
-  async onUpdate() {
+  public async onUpdate() {
     if (!this.projectForm.valid || !this.projectId) {
       this.presentAlert(
         'Erro',
@@ -153,7 +150,7 @@ export class ProjetoEditComponent implements OnInit {
     }
   }
 
-  async onDeleteConfirm() {
+  public async onDeleteConfirm() {
     const alert = await this.alertController.create({
       header: 'Confirmar Exclusão',
       message: 'Você tem certeza que deseja excluir este projeto?',
@@ -173,7 +170,7 @@ export class ProjetoEditComponent implements OnInit {
     await alert.present();
   }
 
-  async deleteProject() {
+  public async deleteProject() {
     if (!this.projectId) return;
 
     const loading = await this.loadingController.create({
@@ -193,7 +190,7 @@ export class ProjetoEditComponent implements OnInit {
     }
   }
 
-  async presentAlert(header: string, message: string) {
+  public async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
       message,

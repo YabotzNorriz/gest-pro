@@ -22,7 +22,7 @@ import { Project } from 'src/models/project.model';
 export class ProjectService {
   constructor(private firestore: Firestore, private auth: Auth) {}
 
-  async addProject(
+  public async addProject(
     projectData: Omit<Project, 'id' | 'createdBy' | 'createdAt' | 'updatedAt'>
   ) {
     const user = this.auth.currentUser;
@@ -49,18 +49,18 @@ export class ProjectService {
     }
   }
 
-  getProjects(): Observable<Project[]> {
+  public getProjects(): Observable<Project[]> {
     const projectsCollection = collection(this.firestore, 'projects');
     const project = query(projectsCollection, orderBy('createdAt', 'desc'));
     return collectionData(project, { idField: 'id' }) as Observable<Project[]>;
   }
 
-  getProjectById(projectId: string): Observable<Project> {
+  public getProjectById(projectId: string): Observable<Project> {
     const projectDocRef = doc(this.firestore, `projects/${projectId}`);
     return docData(projectDocRef, { idField: 'id' }) as Observable<Project>;
   }
 
-  async updateProject(projectId: string, projectData: Partial<Project>) {
+  public async updateProject(projectId: string, projectData: Partial<Project>) {
     const projectDocRef = doc(this.firestore, `projects/${projectId}`);
     const dataToUpdate = {
       ...projectData,
@@ -75,7 +75,7 @@ export class ProjectService {
     }
   }
 
-  deleteProject(projectId: string) {
+  public deleteProject(projectId: string) {
     const projectDocRef = doc(this.firestore, `projects/${projectId}`);
     return deleteDoc(projectDocRef);
   }

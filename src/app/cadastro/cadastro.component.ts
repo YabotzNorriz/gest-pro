@@ -6,21 +6,22 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
-import { UserService } from 'src/app/services/user.service';
 import {
+  AlertController,
+  IonButton,
+  IonContent,
   IonHeader,
+  IonIcon,
   IonInput,
+  IonItem,
+  IonList,
   IonTitle,
   IonToolbar,
-  IonItem,
-  IonContent,
-  IonList,
-  IonIcon,
-  IonButton,
+  LoadingController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { key, mail } from 'ionicons/icons';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -60,7 +61,7 @@ export class CadastroComponent implements OnInit {
     });
   }
 
-  async onSubmit() {
+  public async onSubmit() {
     if (!this.cadastroForm.valid) {
       return;
     }
@@ -95,7 +96,7 @@ export class CadastroComponent implements OnInit {
     }
   }
 
-  async presentAlert(header: string, message: string) {
+  public async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
       message,
@@ -104,7 +105,7 @@ export class CadastroComponent implements OnInit {
     await alert.present();
   }
 
-  onClickBtnLogin() {
+  public onClickBtnLogin() {
     this.router.navigate(['/login']);
   }
 }

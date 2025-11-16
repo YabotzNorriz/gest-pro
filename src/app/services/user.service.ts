@@ -1,12 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { User } from 'src/models/user.model';
 
 import {
   Auth,
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signOut,
 } from '@angular/fire/auth';
 
@@ -18,7 +16,7 @@ export class UserService {
     console.log('usuario ativado');
   }
 
-  async register({ email, password }: { email: string; password: string }) {
+  public async register({ email, password }: { email: string; password: string }) {
     try {
       const user = await createUserWithEmailAndPassword(
         this.auth,
@@ -31,8 +29,9 @@ export class UserService {
     }
   }
 
-  async login({ email, password }: { email: string; password: string }) {
+  public async login({ email, password }: { email: string; password: string }) {
     try {
+      console.log("Cheguei aqui - Tentando logar login method");
       const user = await signInWithEmailAndPassword(this.auth, email, password);
       return user;
     } catch (e) {
@@ -40,7 +39,7 @@ export class UserService {
     }
   }
 
-  logout() {
+  public ogout() {
     return signOut(this.auth);
   }
 }

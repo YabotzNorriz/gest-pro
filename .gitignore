@@ -1,6 +1,7 @@
-# Angular specific
+# Angular Build output
 /dist/
 /out-tsc/
+/www/
 /tmp/
 /coverage/
 /e2e/test-output/
@@ -9,7 +10,6 @@
 
 # Node modules and dependency files
 /node_modules/
-/package-lock.json
 /yarn.lock
 
 # Environment files

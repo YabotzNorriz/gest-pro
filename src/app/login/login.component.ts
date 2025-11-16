@@ -5,22 +5,23 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
-  IonHeader,
+  AlertController,
+  IonButton,
   IonContent,
-  IonTitle,
-  IonToolbar,
-  IonList,
-  IonItem,
+  IonHeader,
   IonIcon,
   IonInput,
-  IonButton,
+  IonItem,
+  IonList,
+  IonTitle,
+  IonToolbar,
+  LoadingController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { happy, key, mail, people } from 'ionicons/icons';
+import { key, mail } from 'ionicons/icons';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
-import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -60,7 +61,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  async onLogin() {
+  public async onLogin() {
+    console.log('Tentando logar com', this.loginForm.value, this.loginForm.valid);
     if (!this.loginForm.valid) {
       return;
     }
@@ -94,7 +96,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async presentAlert(header: string, message: string) {
+  public async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
       message,
@@ -103,7 +105,7 @@ export class LoginComponent implements OnInit {
     await alert.present();
   }
 
-  onClickBtnCadastro() {
+  public onClickBtnCadastro() {
     this.router.navigate(['/cadastro']);
   }
   //TODO: Podemos implementar uma recuperação de senha no banco de dados (necessário colocar no HTML)

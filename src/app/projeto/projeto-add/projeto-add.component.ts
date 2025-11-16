@@ -7,19 +7,20 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
+  AlertController,
+  IonButton,
   IonContent,
-  IonList,
+  IonInput,
   IonItem,
   IonLabel,
-  IonInput,
-  IonTextarea,
-  IonSelectOption,
-  IonButton,
+  IonList,
   IonSelect,
+  IonSelectOption,
+  IonTextarea,
+  LoadingController
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { ProjectService } from 'src/app/services/project.service';
-import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-projeto-add',
@@ -63,7 +64,7 @@ export class ProjetoAddComponent implements OnInit {
     });
   }
 
-  async onSubmit() {
+  public async onSubmit() {
     if (!this.projectForm.valid) {
       this.presentAlert(
         'Erro',
@@ -108,7 +109,7 @@ export class ProjetoAddComponent implements OnInit {
     }
   }
 
-  async presentAlert(header: string, message: string) {
+  public async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
       message,

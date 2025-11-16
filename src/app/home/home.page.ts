@@ -1,34 +1,28 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonButtons,
-  IonSegment,
-  IonSegmentButton,
+  AlertController,
+  IonButton,
   IonCard,
+  IonCardContent,
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
-  IonCardContent,
   IonChip,
-  IonButton,
-  IonIcon,
-  IonLabel,
+  IonContent,
   IonFab,
   IonFabButton,
+  IonIcon,
   IonSpinner,
+  LoadingController
 } from '@ionic/angular/standalone';
-import { HeaderComponent } from '../header/header.component';
-import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { add } from 'ionicons/icons';
-import { Project } from 'src/models/project.model';
 import { Observable } from 'rxjs';
+import { Project } from 'src/models/project.model';
+import { HeaderComponent } from '../header/header.component';
 import { ProjectService } from '../services/project.service';
-import { AlertController, LoadingController } from '@ionic/angular';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -75,7 +69,7 @@ export class HomePage {
     }
   }
 
-  async onDeleteProject(project: Project) {
+  public async onDeleteProject(project: Project) {
     const alert = await this.alertController.create({
       header: 'Confirmar Exclusão',
       message: `Tem certeza que deseja deletar o projeto "${project.nomeProjeto}"?`,
