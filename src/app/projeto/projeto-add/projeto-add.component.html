@@ -59,19 +59,13 @@
 
         <ion-item>
           <ion-label>Status</ion-label>
-          <ion-select
-            formControlName="status"
-            class="ion-text-right"
-            placeholder="Selecione"
-          >
-            <ion-select-option value="Iniciar">A Iniciar</ion-select-option>
-            <ion-select-option value="Em Andamento"
-              >Em Andamento</ion-select-option
-            >
-            <ion-select-option value="Concluído">Concluído</ion-select-option>
-            <ion-select-option value="Em espera">Em espera</ion-select-option>
-            <ion-select-option value="Cancelado">Cancelado</ion-select-option>
-          </ion-select>
+            <ion-select formControlName="status">
+              @for (s of statusOptions; track s) {
+                <ion-select-option [value]="s">
+                  {{ s | titlecase }}
+                </ion-select-option>
+              }
+            </ion-select>
         </ion-item>
 
         <ion-item>

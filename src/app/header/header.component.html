@@ -1,3 +1,4 @@
+<!-- src/app/header/header.component.html -->
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -6,26 +7,22 @@
     <ion-title>GestPro</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-segment scrollable="true">
-      <ion-segment-button value="iniciar">
-        <ion-label>A INICIAR</ion-label>
-      </ion-segment-button>
-
-      <ion-segment-button value="andamento">
-        <ion-label>EM ANDAMENTO</ion-label>
-      </ion-segment-button>
-
-      <ion-segment-button value="concluido">
-        <ion-label>CONCLUÍDO</ion-label>
-      </ion-segment-button>
-
-      <ion-segment-button value="em_espera">
-        <ion-label>EM ESPERA</ion-label>
-      </ion-segment-button>
-
-      <ion-segment-button value="cancelado">
-        <ion-label>CANCELADO</ion-label>
-      </ion-segment-button>
+    <ion-segment scrollable="true" [value]="selectedStatus" (ionChange)="onSegmentChange($event)">
+    <ion-segment-button [value]="status.Iniciar">
+      <ion-label>A INICIAR</ion-label>
+    </ion-segment-button>
+    <ion-segment-button [value]="status.Andamento">
+      <ion-label>EM ANDAMENTO</ion-label>
+    </ion-segment-button>
+    <ion-segment-button [value]="status.Concluido">
+      <ion-label>CONCLUÍDO</ion-label>
+    </ion-segment-button>
+    <ion-segment-button [value]="status.EmEspera">
+      <ion-label>EM ESPERA</ion-label>
+    </ion-segment-button>
+    <ion-segment-button [value]="status.Cancelado">
+      <ion-label>CANCELADO</ion-label>
+    </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>

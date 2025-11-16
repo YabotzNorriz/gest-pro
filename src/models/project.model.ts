@@ -1,3 +1,5 @@
+import { Status } from "./enums";
+
 export interface Project {
   id?: string;
   numProjeto: string;
@@ -6,7 +8,7 @@ export interface Project {
   areas: string;
   responsavel: string;
   escopo: string;
-  status: 'Iniciar' | 'Em Andamento' | 'Concluído' | 'Em espera' | 'Cancelado';
+  status: Status;
   tags: string[];
   createdBy: string;
   createdAt: any;

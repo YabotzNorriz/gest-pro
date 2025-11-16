@@ -1,4 +1,6 @@
+import { TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+
 import {
   FormBuilder,
   FormGroup,
@@ -21,6 +23,7 @@ import {
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { ProjectService } from 'src/app/services/project.service';
+import { Status } from 'src/models/enums';
 
 @Component({
   selector: 'app-projeto-add',
@@ -38,10 +41,12 @@ import { ProjectService } from 'src/app/services/project.service';
     IonSelect,
     IonList,
     ReactiveFormsModule,
+    TitleCasePipe
   ],
 })
 export class ProjetoAddComponent implements OnInit {
   projectForm!: FormGroup;
+  public statusOptions = Object.values(Status);
 
   constructor(
     private fb: FormBuilder,
@@ -59,7 +64,7 @@ export class ProjetoAddComponent implements OnInit {
       areas: ['', [Validators.required]],
       responsavel: ['', [Validators.required]],
       escopo: ['', [Validators.required]],
-      status: ['iniciar', [Validators.required]],
+      status: [Status.Iniciar, [Validators.required]],
       tags: [''],
     });
   }

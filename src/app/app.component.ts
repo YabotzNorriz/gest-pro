@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import {
   IonApp,
-  IonRouterOutlet,
-  IonList,
-  IonItem,
   IonContent,
   IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonMenu,
   IonIcon,
+  IonItem,
+  IonList,
+  IonMenu,
+  IonRouterOutlet,
+  IonTitle,
+  IonToolbar,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { arrowBack, home, power, settings } from 'ionicons/icons';
+import { arrowBack, documentsOutline, home, power, send, settings } from 'ionicons/icons';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +32,6 @@ import { arrowBack, home, power, settings } from 'ionicons/icons';
 })
 export class AppComponent {
   constructor() {
-    addIcons({ arrowBack, home, settings, power });
+    addIcons({ arrowBack, home, settings, power, send, documentsOutline });
   }
 }

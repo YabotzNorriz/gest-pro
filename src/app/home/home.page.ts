@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   AlertController,
@@ -20,6 +20,7 @@ import {
 import { addIcons } from 'ionicons';
 import { add } from 'ionicons/icons';
 import { Observable } from 'rxjs';
+import { Status } from 'src/models/enums';
 import { Project } from 'src/models/project.model';
 import { HeaderComponent } from '../header/header.component';
 import { ProjectService } from '../services/project.service';
@@ -46,8 +47,12 @@ import { ProjectService } from '../services/project.service';
     CommonModule,
   ],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   public projects$: Observable<Project[]>;
+  public allProjects: Project[] = [];
+  public filteredProjects: Project[] = [];
+  public selectedStatus: Status = Status.Iniciar;
+
 
   constructor(
     private router: Router,
@@ -58,10 +63,33 @@ export class HomePage {
     addIcons({ add });
   }
 
+/**
+ * Lifecycle hook that is called after Angular has fully initialized the component.
+ * At this point all the component's input bindings have been resolved and it is safe to access them.
+ * In this case, we subscribe to the projects observable returned by the project service.
+ */
   ngOnInit() {
     this.projects$ = this.projectService.getProjects();
+    this.projects$.subscribe(projects => {
+      this.allProjects = projects;
+      this.applyFilter();
+    });
+  }
+  onFilterChange(status: Status) {
+    this.selectedStatus = status;
+    console.log('Filtro alterado no HomePage:', this.selectedStatus);
+    this.applyFilter();
   }
 
+  applyFilter() {
+    if (this.selectedStatus) {
+      this.filteredProjects = this.allProjects.filter(
+        p => p.status === this.selectedStatus
+      );
+    } else {
+      this.filteredProjects = this.allProjects;
+    }
+  }
   onEditProject(project: Project) {
     console.log('Editar:', project.id);
     if (project.id) {
@@ -95,19 +123,17 @@ export class HomePage {
     await alert.present();
   }
 
-  getStatusColor(
-    status: 'Iniciar' | 'Em Andamento' | 'Concluído' | 'Em espera' | 'Cancelado'
-  ) {
+  getStatusColor(status: Status) {
     switch (status) {
-      case 'Iniciar':
+      case Status.Iniciar:
         return 'medium';
-      case 'Em Andamento':
+      case Status.Andamento:
         return 'primary';
-      case 'Em espera':
+      case Status.EmEspera:
         return 'warning';
-      case 'Concluído':
+      case Status.Concluido:
         return 'success';
-      case 'Cancelado':
+      case Status.Cancelado:
         return 'danger';
       default:
         return 'medium';

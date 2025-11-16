@@ -25,6 +25,7 @@ import {
 import { take } from 'rxjs';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { ProjectService } from 'src/app/services/project.service';
+import { Status } from 'src/models/enums';
 
 @Component({
   selector: 'app-projeto-edit',
@@ -69,7 +70,7 @@ export class ProjetoEditComponent implements OnInit {
       areas: ['', [Validators.required]],
       responsavel: ['', [Validators.required]],
       escopo: ['', [Validators.required]],
-      status: ['iniciar', [Validators.required]],
+      status: [Status.Iniciar, [Validators.required]],
       tags: [''],
     });
 
@@ -82,7 +83,7 @@ export class ProjetoEditComponent implements OnInit {
       this.navCtrl.back();
     }
   }
-
+public statusOptions = Object.values(Status);
   loadProjectData(id: string) {
     this.isLoading = true;
     this.projectService

@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <ion-content [fullscreen]="true">
-  <div *ngIf="!isLoading; else loadingTemplate">
+  @if (!isLoading) {
     <form [formGroup]="projectForm" (ngSubmit)="onUpdate()">
       <div class="ion-padding">
         <h2 class="form-title">Editar Projeto</h2>
@@ -65,16 +65,12 @@
 
           <ion-item>
             <ion-label>Status</ion-label>
-            <ion-select
-              formControlName="status"
-              class="ion-text-right"
-              placeholder="exemplo"
-            >
-              <ion-select-option value="iniciar">A Iniciar</ion-select-option>
-              <ion-select-option value="andamento"
-                >Em Andamento</ion-select-option
-              >
-              <ion-select-option value="concluido">Concluído</ion-select-option>
+            <ion-select formControlName="status">
+              @for (s of statusOptions; track s) {
+                <ion-select-option [value]="s">
+                  {{ s | titlecase }}
+                </ion-select-option>
+              }
             </ion-select>
           </ion-item>
 
@@ -111,12 +107,10 @@
         </div>
       </div>
     </form>
-  </div>
-
-  <ng-template #loadingTemplate>
+  } @else {
     <div class="loading-container">
       <ion-spinner name="crescent"></ion-spinner>
       <p>Carregando dados do projeto...</p>
     </div>
-  </ng-template>
+  }
 </ion-content>
