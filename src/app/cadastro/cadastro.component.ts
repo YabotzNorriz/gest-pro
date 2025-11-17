@@ -15,6 +15,7 @@ import {
   IonInput,
   IonItem,
   IonList,
+  IonText,
   IonTitle,
   IonToolbar,
   LoadingController
@@ -38,6 +39,7 @@ import { UserService } from 'src/app/services/user.service';
     IonInput,
     IonHeader,
     IonHeader,
+    IonText,
     ReactiveFormsModule,
   ],
 })

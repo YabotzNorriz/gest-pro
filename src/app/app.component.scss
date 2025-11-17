@@ -1,0 +1,16 @@
+ion-list ion-item ion-icon {
+  transition: color 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+ion-list ion-item ion-icon:hover {
+  color: var(--ion-color-primary, #3880ff);
+  transform: scale(1.2);
+}
+
+ion-list ion-item ion-icon {
+  margin-right: 12px;
+  font-size: 22px;
+  /* Optional: vertical align */
+  vertical-align: middle;
+}

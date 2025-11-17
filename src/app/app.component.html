@@ -7,15 +7,18 @@
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item><ion-icon name="home"></ion-icon>Home</ion-item>
-        <ion-item><ion-icon name="arrow-back"></ion-icon>Em Andamento</ion-item>
-        <ion-item><ion-icon name="arrow-back"></ion-icon>Concluído</ion-item>
-        <ion-item
-          ><ion-icon name="arrow-back"></ion-icon
-          >Aguardando/Sobrestado</ion-item
-        >
-        <ion-item><ion-icon name="settings"></ion-icon>Opções</ion-item>
-        <ion-item><ion-icon name="power"></ion-icon>Sair</ion-item>
+        <ion-item>
+          <ion-icon name="home" (click)="goHome()" class="ion-margin-end" style="cursor:pointer"></ion-icon>
+          <ion-label (click)="goHome()" style="cursor:pointer;">Home</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="settings" (click)="goSettings()" class="ion-margin-end" style="cursor:pointer"></ion-icon>
+          <ion-label (click)="goSettings()" style="cursor:pointer;">Configurações</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="power" (click)="onLogout()" class="ion-margin-end" style="cursor:pointer"></ion-icon>
+          <ion-label (click)="onLogout()" style="cursor:pointer;">Sair</ion-label>
+        </ion-item>
       </ion-list>
     </ion-content>
   </ion-menu>

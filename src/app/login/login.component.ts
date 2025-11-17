@@ -62,7 +62,6 @@ export class LoginComponent implements OnInit {
   }
 
   public async onLogin() {
-    console.log('Tentando logar com', this.loginForm.value, this.loginForm.valid);
     if (!this.loginForm.valid) {
       return;
     }
@@ -108,33 +107,4 @@ export class LoginComponent implements OnInit {
   public onClickBtnCadastro() {
     this.router.navigate(['/cadastro']);
   }
-  //TODO: Podemos implementar uma recuperação de senha no banco de dados (necessário colocar no HTML)
-  // async onForgotPassword() {
-  //   const alert = await this.alertController.create({
-  //     header: 'Recuperar Senha',
-  //     message: 'Digite seu e-mail para enviarmos um link de recuperação.',
-  //     inputs: [
-  //       {
-  //         name: 'email',
-  //         type: 'email',
-  //         placeholder: 'seu@email.com'
-  //       }
-  //     ],
-  //     buttons: [
-  //       {
-  //         text: 'Cancelar',
-  //         role: 'cancel'
-  //       },
-  //       {
-  //         text: 'Enviar',
-  //         handler: (data) => {
-  //           if (data.email) {
-  //             console.log('Enviar link de recuperação para:', data.email);
-  //           }
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   await alert.present();
-  // }
 }

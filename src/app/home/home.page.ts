@@ -91,7 +91,6 @@ export class HomePage implements OnInit {
     }
   }
   onEditProject(project: Project) {
-    console.log('Editar:', project.id);
     if (project.id) {
       this.router.navigate(['/edit', project.id]);
     }
@@ -140,7 +139,6 @@ export class HomePage implements OnInit {
     }
   }
   onClickBtnAdd() {
-    console.log('apertei no +');
     this.router.navigate(['/add']);
   }
 }

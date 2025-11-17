@@ -28,6 +28,16 @@
           ></ion-input>
         </ion-item>
       </ion-list>
+      @if (cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.dirty) {
+          <ion-text color="danger">
+            <small>Email inválido</small>
+          </ion-text>
+        }
+        @if (cadastroForm.get('password')?.invalid && cadastroForm.get('password')?.dirty) {
+          <ion-text color="danger">
+            <small>Senha inválida (mínimo 6 caracteres)</small>
+          </ion-text>
+        }
       <ion-button
         type="submit"
         [disabled]="!cadastroForm.valid"

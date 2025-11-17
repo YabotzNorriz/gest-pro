@@ -16,8 +16,13 @@ export const routes: Routes = [
       import('./cadastro/cadastro.component').then((m) => m.CadastroComponent),
   },
   {
+    path: 'configuracao',
+    loadComponent: () =>
+      import('./configuracao/configuracao.component').then((m) => m.ConfiguracaoComponent),
+  },
+  {
     path: '',
-    redirectTo: 'cadastro',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {

@@ -41,7 +41,6 @@ export class ProjectService {
 
     try {
       const docRef = await addDoc(projectsCollection, dataToSave);
-      console.log('Projeto salvo com ID: ', docRef.id);
       return docRef;
     } catch (e) {
       console.error('Erro ao salvar projeto: ', e);

@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Configurações</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div class="avatar-container" style="display: flex; flex-direction: column; align-items: center; margin-top: 32px;">
+    <ion-avatar style="width: 120px; height: 120px;">
+        <img [src]="userPhotoUrl" alt="Foto do usuário" style="width: 100%; height: 100%; object-fit: cover;" />
+    </ion-avatar>
+    <input #photoInput type="file" accept="image/*" style="display:none" (change)="onPhotoSelected($event)" />
+    <ion-button size="small" (click)="photoInput.click()" style="margin-top: 12px;">
+      <ion-icon name="attach" slot="start"></ion-icon>
+      Alterar Foto
+    </ion-button>
+    <ion-button size="small" color="primary" (click)="onSavePhoto()" [disabled]="!selectedFile || isUploading" style="margin-top: 8px;">
+      Salvar Foto
+    </ion-button>
+    @if (uploadError) {
+      <ion-text color="danger">{{ uploadError }}</ion-text>
+    }
+    @if (isUploading) {
+      <ion-text color="medium">Enviando foto...</ion-text>
+    }
+
+    <div style="margin-top: 24px; text-align: center;">
+      <ion-label color="medium" style="font-size: 1.1em;">{{ userData.email }}</ion-label>
+    </div>
+  </div>
+
+  <ion-item>
+    <input
+      type="checkbox"
+      [(ngModel)]="wantsToChangePassword"
+      id="wantsToChangePassword"
+      style="margin-right: 8px; width: 18px; height: 18px;"
+    />
+    <ion-label for="wantsToChangePassword">Quero alterar minha senha</ion-label>
+  </ion-item>
+
+  @if (wantsToChangePassword) {
+    <form autocomplete="off" style="margin-top: 16px;" (ngSubmit)="onChangePassword()">
+      @if (!currentPasswordChecked) {
+        <ion-label style="font-weight: bold;">Digite sua senha atual</ion-label>
+        <ion-input
+          type="password"
+          placeholder="Senha atual"
+          [(ngModel)]="currentPassword"
+          name="currentPassword"
+          required
+          style="margin-top: 8px;"
+        ></ion-input>
+        <ion-button expand="block" color="primary" (click)="onCheckCurrentPassword()" [disabled]="isCheckingCurrentPassword || !currentPassword" style="margin-top: 12px;">
+          Verificar senha
+        </ion-button>
+        @if (currentPasswordError) {
+          <ion-text color="danger">{{ currentPasswordError }}</ion-text>
+        }
+        @if (isCheckingCurrentPassword) {
+          <ion-text color="medium">Verificando senha...</ion-text>
+        }
+      } @else {
+        <ion-label style="font-weight: bold;">Nova senha</ion-label>
+        <ion-input
+          type="password"
+          placeholder="Nova senha"
+          [(ngModel)]="newPassword"
+          name="newPassword"
+          required
+          style="margin-top: 8px;"
+        ></ion-input>
+        <ion-input
+          type="password"
+          placeholder="Confirmar nova senha"
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          required
+          style="margin-top: 8px;"
+        ></ion-input>
+        <ion-button
+          expand="block"
+          color="primary"
+          type="submit"
+          [disabled]="isChangingPassword"
+          style="margin-top: 12px;"
+        >
+          Alterar Senha
+        </ion-button>
+        @if (passwordError) {
+          <ion-text color="danger">{{ passwordError }}</ion-text>
+        }
+        @if (passwordSuccess) {
+          <ion-text color="success">{{ passwordSuccess }}</ion-text>
+        }
+        @if (isChangingPassword) {
+          <ion-text color="medium">Alterando senha...</ion-text>
+        }
+      }
+    </form>
+  }
+</ion-content>
