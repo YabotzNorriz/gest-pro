@@ -77,7 +77,6 @@ export class HomePage implements OnInit {
   }
   onFilterChange(status: Status) {
     this.selectedStatus = status;
-    console.log('Filtro alterado no HomePage:', this.selectedStatus);
     this.applyFilter();
   }
 

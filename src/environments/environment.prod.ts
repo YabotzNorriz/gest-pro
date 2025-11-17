@@ -1,6 +1,3 @@
-//     storageBucket: 'gest-pro-7d600.appspot.com', maybe should be used to upload photos?
-
-
 export const environment = {
   production: true,
   firebase: {

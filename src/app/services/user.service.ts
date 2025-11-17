@@ -28,10 +28,8 @@ export class UserService {
    */
   public async uploadUserPhoto(file: File): Promise<string | null> {
     const user = this.auth.currentUser;
-    console.log('Authenticated UID:', user?.uid);
     if (!user) return null;
     const filePath = `user_photos/${user.uid}/${Date.now()}_${file.name}`;
-    console.log('Uploading photo to:', filePath);
     const storageRef = ref(this.storage, filePath);
     await uploadBytes(storageRef, file);
     const url = await getDownloadURL(storageRef);
