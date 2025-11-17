@@ -124,7 +124,6 @@ export class ProjetoAddComponent implements OnInit {
   }
 
   onClickBtnCancelar() {
-    console.log('btn cancelar apertado');
     this.router.navigate(['/home']);
   }
 }

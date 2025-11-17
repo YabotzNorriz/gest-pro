@@ -58,14 +58,11 @@ export class ConfiguracaoComponent {
     this.userService.getUserData$().pipe(take(1)).subscribe(data => {
       this.userData = data;
       this.userPhotoUrl = data.photoURL ? data.photoURL : 'assets/avatar-default.png';
-      console.log("User data loaded:", this.userData);
     });
   }
 
   onPhotoSelected(event: Event) {
-    console.log("Cheguei:", event)
     const input = event.target as HTMLInputElement;
-    console.log("Input files:", input.files);
     if (input.files && input.files[0]) {
       this.selectedFile = input.files[0];
       const reader = new FileReader();
@@ -94,10 +91,8 @@ export class ConfiguracaoComponent {
     if (!this.selectedFile) return;
     this.isUploading = true;
     this.uploadError = null;
-    console.log("Starting photo upload", this.selectedFile);
     try {
       const url = await this.userService.uploadUserPhoto(this.selectedFile);
-      console.log(url)
       if (url) {
         this.userPhotoUrl = url;
         this.selectedFile = null;
