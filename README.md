@@ -75,8 +75,8 @@ O Gest-Pro foi criado para facilitar o controle de projetos, tarefas e equipes, 
 ### Tela de Tarefas
 ![Tarefas](./docs/screens/tarefas.png)
 #### Criar Editar Tarefas
-![criarTarefa](./docs/screens/.criar-tarefa.png)
-![editarTarefa](./docs/screens/.editar-tarefa.png)
+![criarTarefa](./docs/screens/criar-tarefa.png)
+![editarTarefa](./docs/screens/editar-tarefa.png)
 
 ### Tela de Configurações
 ![Configurações](./docs/screens/configuracao-usuario.png)
@@ -121,18 +121,30 @@ O Gest-Pro foi criado para facilitar o controle de projetos, tarefas e equipes, 
 ## Estrutura de Pastas
 
 ```
+## Estrutura de Pastas
 ├── src/
 │   ├── app/
 │   │   ├── configuracao/           # Tela de configurações
+│   │   ├── core/                   # Módulos e serviços centrais (guards, interceptors, etc)
+│   │   ├── shared/                 # Componentes, pipes e diretivas reutilizáveis
+│   │   ├── projetos/               # Funcionalidades de projetos
+│   │   ├── tarefas/                # Funcionalidades de tarefas
+│   │   ├── usuario/                # Perfil e autenticação de usuário
 │   │   ├── services/               # Serviços (UserService, Auth, etc)
 │   │   ├── models/                 # Modelos de dados (UserData, Projeto, Tarefa)
 │   │   ├── assets/                 # Imagens e arquivos estáticos
-│   │   └── ...
-│   ├── environments/               # Configurações de ambiente
-│   ├── theme/                      # Temas e estilos globais
-│   └── ...
+│   │   └── app.module.ts           # Módulo principal do Angular
+│   ├── assets/                     # Recursos estáticos globais (ícones, imagens, etc)
+│   ├── environments/               # Configurações de ambiente (dev/prod)
+│   ├── theme/                      # Temas e estilos globais (SCSS)
+│   ├── index.html                  # HTML principal
+│   ├── main.ts                     # Bootstrap da aplicação Angular
+│   └── styles.scss                 # Estilos globais
 ├── docs/screens/                   # Imagens das telas para README
-└── ...
+├── .github/                        # Workflows e templates de contribuição
+├── package.json                    # Dependências e scripts do projeto
+├── angular.json                    # Configuração do Angular CLI
+└── README.md                       # Documentação do projeto
 ```
 
 ## Tecnologias Utilizadas
