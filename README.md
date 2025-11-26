@@ -10,11 +10,11 @@ Gest-Pro é um aplicativo de gestão de projetos e tarefas desenvolvido com Angu
   - [Funcionalidades Principais](#funcionalidades-principais)
   - [Screenshots](#screenshots)
     - [Tela de Login](#tela-de-login)
-      - [](#)
       - [Falha de Login](#falha-de-login)
     - [Tela de Cadastro](#tela-de-cadastro)
       - [Falha de Cadastro](#falha-de-cadastro)
     - [Tela de Tarefas](#tela-de-tarefas)
+      - [Criar Editar Tarefas](#criar-editar-tarefas)
     - [Tela de Configurações](#tela-de-configurações)
       - [Change password](#change-password)
   - [Instalação e Configuração](#instalação-e-configuração)
@@ -62,9 +62,7 @@ O Gest-Pro foi criado para facilitar o controle de projetos, tarefas e equipes, 
 
 ### Tela de Login
 ![Login](./docs/screens/login.png)
-####
-![criarTarefa](./docs/screens/.criar-tarefa.png)
-![editarTarefa](./docs/screens/.editar-tarefa.png)
+
 #### Falha de Login
 ![FalhaLogin](./docs/screens/falha-login.png)
 
@@ -76,6 +74,9 @@ O Gest-Pro foi criado para facilitar o controle de projetos, tarefas e equipes, 
 
 ### Tela de Tarefas
 ![Tarefas](./docs/screens/tarefas.png)
+#### Criar Editar Tarefas
+![criarTarefa](./docs/screens/.criar-tarefa.png)
+![editarTarefa](./docs/screens/.editar-tarefa.png)
 
 ### Tela de Configurações
 ![Configurações](./docs/screens/configuracao-usuario.png)
