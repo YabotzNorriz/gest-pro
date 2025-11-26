@@ -19,16 +19,16 @@ import {
   IonSelect,
   IonSelectOption,
   IonTextarea,
-  LoadingController
+  LoadingController,
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { ProjectService } from 'src/app/services/project.service';
 import { Status } from 'src/models/enums';
 
 @Component({
-  selector: 'app-projeto-add',
-  templateUrl: './projeto-add.component.html',
-  styleUrls: ['./projeto-add.component.scss'],
+  selector: 'app-add-tarefa',
+  templateUrl: './add-tarefa.component.html',
+  styleUrls: ['./add-tarefa.component.scss'],
   imports: [
     IonButton,
     IonTextarea,
@@ -41,10 +41,10 @@ import { Status } from 'src/models/enums';
     IonSelect,
     IonList,
     ReactiveFormsModule,
-    TitleCasePipe
+    TitleCasePipe,
   ],
 })
-export class ProjetoAddComponent implements OnInit {
+export class AddTarefaComponent implements OnInit {
   projectForm!: FormGroup;
   public statusOptions = Object.values(Status);
 

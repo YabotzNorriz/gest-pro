@@ -20,7 +20,7 @@ import {
   IonSpinner,
   IonTextarea,
   LoadingController,
-  NavController
+  NavController,
 } from '@ionic/angular/standalone';
 import { take } from 'rxjs';
 import { HeaderComponent } from 'src/app/header/header.component';
@@ -28,9 +28,9 @@ import { ProjectService } from 'src/app/services/project.service';
 import { Status } from 'src/models/enums';
 
 @Component({
-  selector: 'app-projeto-edit',
-  templateUrl: './projeto-edit.component.html',
-  styleUrls: ['./projeto-edit.component.scss'],
+  selector: 'app-edit-tarefa',
+  templateUrl: './edit-tarefa.component.html',
+  styleUrls: ['./edit-tarefa.component.scss'],
   imports: [
     IonSpinner,
     IonButton,
@@ -47,7 +47,7 @@ import { Status } from 'src/models/enums';
     ReactiveFormsModule,
   ],
 })
-export class ProjetoEditComponent implements OnInit {
+export class EditTarefaComponent implements OnInit {
   projectForm!: FormGroup;
   projectId: string | null = null;
   isLoading = true;
@@ -83,7 +83,7 @@ export class ProjetoEditComponent implements OnInit {
       this.navCtrl.back();
     }
   }
-public statusOptions = Object.values(Status);
+  public statusOptions = Object.values(Status);
   loadProjectData(id: string) {
     this.isLoading = true;
     this.projectService

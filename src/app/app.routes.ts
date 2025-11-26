@@ -18,7 +18,9 @@ export const routes: Routes = [
   {
     path: 'configuracao',
     loadComponent: () =>
-      import('./configuracao/configuracao.component').then((m) => m.ConfiguracaoComponent),
+      import('./configuracao/configuracao.component').then(
+        (m) => m.ConfiguracaoComponent
+      ),
   },
   {
     path: '',
@@ -28,15 +30,15 @@ export const routes: Routes = [
   {
     path: 'edit/:id',
     loadComponent: () =>
-      import('./projeto/projeto-edit/projeto-edit.component').then(
-        (m) => m.ProjetoEditComponent
+      import('./projeto/edit-tarefa/edit-tarefa.component').then(
+        (m) => m.EditTarefaComponent
       ),
   },
   {
     path: 'add',
     loadComponent: () =>
-      import('./projeto/projeto-add/projeto-add.component').then(
-        (m) => m.ProjetoAddComponent
+      import('./projeto/add-tarefa/add-tarefa.component').then(
+        (m) => m.AddTarefaComponent
       ),
   },
 ];
